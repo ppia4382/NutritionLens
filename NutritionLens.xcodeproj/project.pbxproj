@@ -6,17 +6,29 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXFileReference section */
-		68BB770D2EFFCC4300ECCD6E /* NutritionLens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NutritionLens.app; sourceTree = BUILT_PRODUCTS_DIR; };
-/* End PBXFileReference section */
+/* Begin PBXBuildFile section */
+		68C833E12F0141BE00DB491A /* Presentation/Search/SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C833DC2F0141BE00DB491A /* Presentation/Search/SearchView.swift */; };
+		68C833EB2F01490800DB491A /* NutritionLensApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C833EA2F01490800DB491A /* NutritionLensApp.swift */; };
+		68C833ED2F01492E00DB491A /* NutritionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C833EC2F01492E00DB491A /* NutritionItem.swift */; };
+		68C833EF2F01495400DB491A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C833EE2F01495400DB491A /* SearchViewModel.swift */; };
+		68C833F12F01495F00DB491A /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C833F02F01495F00DB491A /* SearchView.swift */; };
+		68C833F32F01499E00DB491A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C833F22F01499E00DB491A /* ContentView.swift */; };
+/* End PBXBuildFile section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		68BB770F2EFFCC4300ECCD6E /* NutritionLens */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = NutritionLens;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
+/* Begin PBXFileReference section */
+		687D9E3C2F00FB8800D7CF88 /* 01_requirements_ja.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = 01_requirements_ja.md; sourceTree = "<group>"; };
+		687D9E3D2F00FB8800D7CF88 /* 02_basic_design_ja.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = 02_basic_design_ja.md; sourceTree = "<group>"; };
+		687D9E3E2F00FB8800D7CF88 /* 03_detailed_design_ja.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = 03_detailed_design_ja.md; sourceTree = "<group>"; };
+		687D9E432F00FB8800D7CF88 /* NutritionLens.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = NutritionLens.xcodeproj; sourceTree = "<group>"; };
+		687D9E482F00FB8800D7CF88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		68BB770D2EFFCC4300ECCD6E /* NutritionLens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NutritionLens.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		68C833DC2F0141BE00DB491A /* Presentation/Search/SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presentation/Search/SearchView.swift; sourceTree = "<group>"; };
+		68C833EA2F01490800DB491A /* NutritionLensApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionLensApp.swift; sourceTree = "<group>"; };
+		68C833EC2F01492E00DB491A /* NutritionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionItem.swift; sourceTree = "<group>"; };
+		68C833EE2F01495400DB491A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		68C833F02F01495F00DB491A /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		68C833F22F01499E00DB491A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		68BB770A2EFFCC4300ECCD6E /* Frameworks */ = {
@@ -29,11 +41,161 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		687D9E332F00FB8800D7CF88 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				68C833EA2F01490800DB491A /* NutritionLensApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		687D9E342F00FB8800D7CF88 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		687D9E352F00FB8800D7CF88 /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Endpoints;
+			sourceTree = "<group>";
+		};
+		687D9E362F00FB8800D7CF88 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		687D9E372F00FB8800D7CF88 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		687D9E382F00FB8800D7CF88 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				687D9E342F00FB8800D7CF88 /* Client */,
+				687D9E352F00FB8800D7CF88 /* Endpoints */,
+				687D9E362F00FB8800D7CF88 /* Errors */,
+				687D9E372F00FB8800D7CF88 /* Models */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		687D9E392F00FB8800D7CF88 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		687D9E3A2F00FB8800D7CF88 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		687D9E3B2F00FB8800D7CF88 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				687D9E382F00FB8800D7CF88 /* API */,
+				687D9E392F00FB8800D7CF88 /* DTO */,
+				687D9E3A2F00FB8800D7CF88 /* Repositories */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		687D9E3F2F00FB8800D7CF88 /* docs */ = {
+			isa = PBXGroup;
+			children = (
+				687D9E3C2F00FB8800D7CF88 /* 01_requirements_ja.md */,
+				687D9E3D2F00FB8800D7CF88 /* 02_basic_design_ja.md */,
+				687D9E3E2F00FB8800D7CF88 /* 03_detailed_design_ja.md */,
+			);
+			path = docs;
+			sourceTree = "<group>";
+		};
+		687D9E402F00FB8800D7CF88 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				68C833EC2F01492E00DB491A /* NutritionItem.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		687D9E412F00FB8800D7CF88 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		687D9E422F00FB8800D7CF88 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				687D9E402F00FB8800D7CF88 /* Entities */,
+				687D9E412F00FB8800D7CF88 /* UseCases */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		687D9E442F00FB8800D7CF88 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		687D9E462F00FB8800D7CF88 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				68C833F22F01499E00DB491A /* ContentView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		687D9E472F00FB8800D7CF88 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				68C833DE2F013FBD00DB491A /* Search */,
+				687D9E442F00FB8800D7CF88 /* Components */,
+				687D9E462F00FB8800D7CF88 /* Screens */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		687D9E492F00FB8800D7CF88 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				687D9E482F00FB8800D7CF88 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		687D9E4A2F00FB8800D7CF88 /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
 		68BB77042EFFCC4300ECCD6E = {
 			isa = PBXGroup;
 			children = (
-				68BB770F2EFFCC4300ECCD6E /* NutritionLens */,
+				687D9E332F00FB8800D7CF88 /* App */,
+				687D9E3B2F00FB8800D7CF88 /* Data */,
+				687D9E3F2F00FB8800D7CF88 /* docs */,
+				687D9E422F00FB8800D7CF88 /* Domain */,
+				687D9E432F00FB8800D7CF88 /* NutritionLens.xcodeproj */,
+				687D9E472F00FB8800D7CF88 /* Presentation */,
+				687D9E492F00FB8800D7CF88 /* Resources */,
 				68BB770E2EFFCC4300ECCD6E /* Products */,
+				68C833E92F01459F00DB491A /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -43,6 +205,23 @@
 				68BB770D2EFFCC4300ECCD6E /* NutritionLens.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		68C833DE2F013FBD00DB491A /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				68C833F02F01495F00DB491A /* SearchView.swift */,
+				68C833EE2F01495400DB491A /* SearchViewModel.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		68C833E92F01459F00DB491A /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				68C833DC2F0141BE00DB491A /* Presentation/Search/SearchView.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -59,9 +238,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				68BB770F2EFFCC4300ECCD6E /* NutritionLens */,
 			);
 			name = NutritionLens;
 			packageProductDependencies = (
@@ -99,6 +275,12 @@
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 68BB770E2EFFCC4300ECCD6E /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 687D9E4A2F00FB8800D7CF88 /* Products */;
+					ProjectRef = 687D9E432F00FB8800D7CF88 /* NutritionLens.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				68BB770C2EFFCC4300ECCD6E /* NutritionLens */,
@@ -121,6 +303,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68C833F12F01495F00DB491A /* SearchView.swift in Sources */,
+				68C833EB2F01490800DB491A /* NutritionLensApp.swift in Sources */,
+				68C833F32F01499E00DB491A /* ContentView.swift in Sources */,
+				68C833ED2F01492E00DB491A /* NutritionItem.swift in Sources */,
+				68C833EF2F01495400DB491A /* SearchViewModel.swift in Sources */,
+				68C833E12F0141BE00DB491A /* Presentation/Search/SearchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
