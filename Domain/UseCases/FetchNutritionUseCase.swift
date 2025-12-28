@@ -18,6 +18,8 @@ final class FetchNutritionUseCaseImpl: FetchNutritionUseCase {
 
     func execute(query: String) async throws -> [NutritionItem] {
         // Placeholder until real API is implemented
-        return []
+        return response.items.map {
+            NutritionItem(name: $0.name, calories: $0.calories)
+        }
     }
 }
