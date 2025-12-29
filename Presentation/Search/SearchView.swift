@@ -32,10 +32,10 @@ struct SearchView: View {
             }
             .adaptiveBorderedButtonStyle()
             .sheet(isPresented: $showingScanner) {
-//                ScannerView { scannedCode in
-//                    barcode = scannedCode
-//                    Task { await viewModel.search(barcode: scannedCode) }
-//                }
+                ScannerView { scannedCode in
+                    barcode = scannedCode
+                    Task { await viewModel.search(barcode: scannedCode) }
+                }
             }
 
             // Loading indicator
