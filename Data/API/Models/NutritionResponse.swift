@@ -5,11 +5,9 @@
 //  Created by Patrician Andres on 2025/12/28.
 //
 
-struct NutritionResponse: Decodable {
-    let items: [NutritionItemDTO]
-}
+import Foundation
 
-struct NutritionItemDTO: Decodable {
-    let name: String
-    let calories: Int
+struct NutritionResponse: Decodable {
+    let status: Int
+    let product: ProductDTO?
 }
