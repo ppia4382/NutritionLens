@@ -5,23 +5,23 @@
 //  Created by Patrician Andres on 2025/12/28.
 //
 
+import Foundation
+
 enum NutritionEndpoint: Endpoint {
-    case search(query: String)
+    case product(barcode: String)
 
     var path: String {
         switch self {
-        case .search:
-            return "/nutrition/search"
+        case .product(let barcode):
+            return "/api/v0/product/\(barcode).json"
         }
     }
 
-    var method: String { "GET" }
+    var method: HTTPMethod {
+        return .get
+    }
 
     var queryItems: [URLQueryItem]? {
-        switch self {
-        case .search(let query):
-            return [URLQueryItem(name: "q", value: query)]
-        }
+        return nil
     }
 }
-

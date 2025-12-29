@@ -5,9 +5,7 @@
 //  Created by Patrician Andres on 2025/12/28.
 //
 
-enum NetworkError: Error {
-    case invalidURL
-    case requestFailed
-    case decodingFailed
-    case unknown
-}
+import Foundation
+
+// This file was accidentally created by an assistant earlier and is intentionally left empty.
+// The canonical NetworkError implementation lives in `NetworkError.swift`.

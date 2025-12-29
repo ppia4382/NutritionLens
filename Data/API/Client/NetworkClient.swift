@@ -9,19 +9,19 @@ import Foundation
 
 final class NetworkClient {
     private let config: NetworkConfig
-    private let session: URLSession
 
-    init(config: NetworkConfig = .default,
-         session: URLSession = .shared) {
+    init(config: NetworkConfig = .world) {
         self.config = config
-        self.session = session
     }
 
     func request<T: Decodable>(_ endpoint: Endpoint) async throws -> T {
-        guard var components = URLComponents(
-            url: config.baseURL.appendingPathComponent(endpoint.path),
-            resolvingAgainstBaseURL: false
-        ) else {
+        // Build URL
+        guard
+            var components = URLComponents(
+                url: config.baseURL.appendingPathComponent(endpoint.path),
+                resolvingAgainstBaseURL: false
+            )
+        else {
             throw NetworkError.invalidURL
         }
 
@@ -31,17 +31,27 @@ final class NetworkClient {
             throw NetworkError.invalidURL
         }
 
-        let (data, response) = try await session.data(from: url)
+        // Create request
+        var request = URLRequest(url: url)
+        request.httpMethod = endpoint.method.rawValue
 
-        guard let http = response as? HTTPURLResponse,
-              200..<300 ~= http.statusCode else {
-            throw NetworkError.requestFailed
+        // Execute request
+        let (data, response) = try await URLSession.shared.data(for: request)
+
+        // Validate response
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw NetworkError.invalidResponse
         }
 
+        guard (200...299).contains(httpResponse.statusCode) else {
+            throw NetworkError.serverError(httpResponse.statusCode)
+        }
+
+        // Decode JSON
         do {
             return try JSONDecoder().decode(T.self, from: data)
         } catch {
-            throw NetworkError.decodingFailed
+            throw NetworkError.decodingError
         }
     }
 }
