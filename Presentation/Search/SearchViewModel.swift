@@ -5,15 +5,20 @@
 //  Created by Patrician Andres on 2025/12/28.
 //
 
-import Combine
 import Foundation
 
 @MainActor
 final class SearchViewModel: ObservableObject {
+
+    // MARK: - UI State
+
+    @Published var query: String = ""
     @Published var item: NutritionItem?
-    @Published var isLoading = false
+    @Published var isLoading: Bool = false
     @Published var errorMessage: String?
-    @Published var notFound = false
+    @Published var notFound: Bool = false
+
+    // MARK: - Dependencies
 
     private let useCase: FetchNutritionUseCase
 
@@ -21,29 +26,47 @@ final class SearchViewModel: ObservableObject {
         self.useCase = useCase
     }
 
-    func search(barcode: String) async {
+    // MARK: - Public API
+
+    func search() async {
+        let barcode = query.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !barcode.isEmpty else { return }
 
         isLoading = true
         errorMessage = nil
         notFound = false
+        item = nil
 
         do {
             let result = try await useCase.execute(barcode: barcode)
             item = result
         } catch {
-            if let productError = error as? ProductError,
-                productError == .notFound
-            {
-                notFound = true
-            } else {
-                errorMessage = "エラーが発生しました"
-                print("DEBUG ERROR:", error)  // for Xcode console errorMessage
-                error.localizedDescription
-            }
-
+            handle(error)
         }
 
         isLoading = false
+    }
+
+    func handleScannedCode(_ code: String) {
+        query = code
+        Task { await search() }
+    }
+
+    func resetNotFound() {
+        notFound = false
+        item = nil
+        query = ""
+    }
+
+    // MARK: - Private
+
+    private func handle(_ error: Error) {
+        if let productError = error as? ProductError,
+           productError == .notFound {
+            notFound = true
+        } else {
+            errorMessage = SearchStrings.genericError
+            print("DEBUG ERROR:", error)
+        }
     }
 }
