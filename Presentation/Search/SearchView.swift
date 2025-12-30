@@ -82,17 +82,10 @@ struct SearchView: View {
     private var resultSection: some View {
         Group {
             if let item = viewModel.item {
-                NutritionResultView(item: item)
-            } else if !viewModel.isLoading,
-                      !viewModel.notFound,
-                      viewModel.errorMessage == nil,
-                      viewModel.query.isEmpty {
-                Text(SearchStrings.noResultHint)
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding(.top, 24)
-            }
+                NavigationLink(destination: ProductDetailView(item: item)) { NutritionResultView(item: item)
+                        .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain) }
         }
     }
 }
