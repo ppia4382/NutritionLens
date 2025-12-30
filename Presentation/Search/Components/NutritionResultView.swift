@@ -14,14 +14,9 @@ struct NutritionResultView: View {
             Text(item.name)
                 .font(.title2)
                 .bold()
-
-            VStack(alignment: .leading, spacing: 4) {
-                Text("カロリー: \(item.calories)")
-                Text("脂質: \(item.fat)")
-                Text("炭水化物: \(item.carbs)")
-                Text("タンパク質: \(item.protein)")
-            }
-            .font(.subheadline)
+            
+            VStack(alignment: .leading, spacing: 4) {}
+                .font(.subheadline)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
