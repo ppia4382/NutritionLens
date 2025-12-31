@@ -21,7 +21,7 @@ struct SearchView: View {
                 Spacer()
             }
             .padding()
-            .navigationTitle(SearchStrings.screenTitle)
+            .navigationTitle("search.title")
             .sheet(isPresented: $showingScanner) {
                 ScannerView { scannedCode in
                     viewModel.handleScannedCode(scannedCode)
@@ -35,38 +35,38 @@ struct SearchView: View {
 
     private var searchInputSection: some View {
         HStack(spacing: 12) {
-            TextField(SearchStrings.barcodePlaceholder, text: $viewModel.query)
+            TextField("search.placeholder", text: $viewModel.query)
                 .textFieldStyle(.roundedBorder)
                 .submitLabel(.search)
                 .onSubmit {
                     Task { await viewModel.search() }
                 }
 
-            Button(SearchStrings.searchButtonTitle) {
+            Button("search.button") {
                 Task { await viewModel.search() }
             }
-            .adaptiveProminentButtonStyle()
+            .buttonStyle(.borderedProminent)
 
             Button {
                 showingScanner = true
             } label: {
                 Image(systemName: "barcode.viewfinder")
             }
-            .adaptiveBorderedButtonStyle()
+            .buttonStyle(.borderedProminent)
         }
     }
 
     private var statusSection: some View {
         VStack(spacing: 12) {
             if viewModel.isLoading {
-                ProgressView(SearchStrings.loadingMessage)
+                ProgressView("search.loading")
             }
 
             if viewModel.notFound {
                 NotFoundView(
-                    title: SearchStrings.notFoundTitle,
-                    message: SearchStrings.notFoundDescription,
-                    retryTitle: SearchStrings.retryButtonTitle
+                    title: "search.notfound.title",
+                    message: "search.notfound.description",
+                    retryTitle: "search.notfound.retry"
                 ) {
                     viewModel.resetNotFound()
                 }
