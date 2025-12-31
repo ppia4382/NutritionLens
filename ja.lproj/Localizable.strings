@@ -1,0 +1,37 @@
+/// ===============================
+/// Search Screen
+/// ===============================
+"search.title" = "検索";
+"search.placeholder" = "バーコードを入力";
+"search.button" = "検索";
+"search.loading" = "読み込み中…";
+"search.notfound.title" = "商品が見つかりません";
+"search.notfound.description" = "入力されたバーコードの商品は見つかりませんでした。";
+"search.notfound.retry" = "再試行";
+"search.noresult.hint" = "バーコードを入力またはスキャンしてください。";
+
+
+/// ===============================
+/// Product Detail
+/// ===============================
+"detail.title" = "商品詳細";
+"detail.nutrition.section" = "栄養成分";
+"detail.calories" = "カロリー";
+"detail.fat" = "脂質";
+"detail.carbs" = "炭水化物";
+"detail.protein" = "タンパク質";
+
+
+/// ===============================
+/// Scanner
+/// ===============================
+"scanner.title" = "スキャン";
+"scanner.instructions" = "バーコードを枠内に合わせてください";
+
+
+/// ===============================
+/// Errors
+/// ===============================
+"error.generic" = "エラーが発生しました。";
+"error.network" = "ネットワークエラーが発生しました。";
+"error.invalid" = "無効な入力です。";
