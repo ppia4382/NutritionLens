@@ -18,3 +18,8 @@ fastlane/screenshots
 
 # Misc
 *.DS_Store
+
+# user‑specific
+xcuserdata/
+xcshareddata/
+

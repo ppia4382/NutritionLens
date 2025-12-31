@@ -1,0 +1,39 @@
+/// ===============================
+/// Search Screen
+/// ===============================
+"search.title" = "Search";
+"search.placeholder" = "Enter barcode";
+"search.button" = "Search";
+"search.loading" = "Loading…";
+"search.notfound.title" = "Product Not Found";
+"search.notfound.description" = "No product was found for the entered barcode.";
+"search.notfound.retry" = "Retry";
+"search.noresult.hint" = "Enter or scan a barcode to begin.";
+
+/// ===============================
+/// Product Detail
+/// ===============================
+"detail.title" = "Product Details";
+"detail.nutrition.section" = "Nutritional Information";
+"detail.calories" = "Calories";
+"detail.fat" = "Fat";
+"detail.carbs" = "Carbohydrates";
+"detail.protein" = "Protein";
+"product.unknown" = "Unknown";
+
+
+/// ===============================
+/// Scanner
+/// ===============================
+"scanner.title" = "Scan";
+"scanner.instructions" = "Align the barcode within the frame";
+"scan.again" = "Scan Again";
+"scan.reset" = "Reset";
+
+/// ===============================
+/// Errors
+/// ===============================
+"error.generic" = "An error has occurred.";
+"error.network" = "A network error has occurred.";
+"error.invalid" = "Invalid input.";
+"error.notfound" = "Product not found.";
