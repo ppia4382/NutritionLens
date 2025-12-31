@@ -9,18 +9,10 @@ import Foundation
 
 struct NetworkConfig {
     let baseURL: URL
-
-    static let world = NetworkConfig(
-        baseURL: URL(string: "https://world.openfoodfacts.org")!
-    )
-
-    static let japan = NetworkConfig(
-        baseURL: URL(string: "https://jp.openfoodfacts.org")!
-    )
-
-    static let asia = NetworkConfig(
-        baseURL: URL(string: "https://asia.openfoodfacts.org")!
-    )
-
+    init(region: Region) { self.baseURL = URL(string: region.rawValue)! }
+    
+    static let world = NetworkConfig(region: .world)
+    static let japan = NetworkConfig(region: .japan)
+    static let asia = NetworkConfig(region: .asia)
     static let `default` = world
 }

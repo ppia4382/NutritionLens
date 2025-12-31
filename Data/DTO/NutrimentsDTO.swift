@@ -1,23 +1,16 @@
 //
-//  ProductDTO.swift
+//  NutrimentsDTO.swift
 //  NutritionLens
 //
-//  Created by Patrician Andres on 2025/12/28.
+//  Created by Patrician Andres on 2025/12/31.
 //
-
-import Foundation
-
-struct ProductDTO: Decodable {
-    let product_name: String?
-    let nutriments: NutrimentsDTO?
-}
 
 struct NutrimentsDTO: Decodable {
     let energyKcal100g: Double?
     let fat100g: Double?
     let carbohydrates100g: Double?
     let proteins100g: Double?
-
+    
     enum CodingKeys: String, CodingKey {
         case energyKcal100g = "energy-kcal_100g"
         case fat100g = "fat_100g"

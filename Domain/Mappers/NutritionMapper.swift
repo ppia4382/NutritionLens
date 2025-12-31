@@ -9,7 +9,7 @@ struct NutritionMapper {
     static func map(dto: ProductDTO) -> NutritionItem {
         let n = dto.nutriments
         return NutritionItem(
-            name: dto.product_name ?? "Unkown",
+            name: dto.product_name ?? "product.unknown",
             calories: n?.energyKcal100g ?? 0,
             fat: n?.fat100g ?? 0,
             carbs: n?.carbohydrates100g ?? 0,

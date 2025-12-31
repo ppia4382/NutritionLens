@@ -57,6 +57,13 @@ final class SearchViewModel: ObservableObject {
         item = nil
         query = ""
     }
+    
+    func resetItem() {
+        item = nil
+        query = ""
+        errorMessage = nil
+        notFound = false
+    }
 
     // MARK: - Private
 
@@ -65,7 +72,7 @@ final class SearchViewModel: ObservableObject {
            productError == .notFound {
             notFound = true
         } else {
-            errorMessage = SearchStrings.genericError
+            errorMessage = NSLocalizedString("error.generic", comment: "")
             print("DEBUG ERROR:", error)
         }
     }

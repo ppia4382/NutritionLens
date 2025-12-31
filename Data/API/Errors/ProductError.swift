@@ -9,11 +9,11 @@ import Foundation
 
 enum ProductError: LocalizedError {
     case notFound
-
+    
     var errorDescription: String? {
         switch self {
         case .notFound:
-            return "商品が見つかりませんでした"
+            return NSLocalizedString("error.notfound", comment: "")
         }
     }
 }
