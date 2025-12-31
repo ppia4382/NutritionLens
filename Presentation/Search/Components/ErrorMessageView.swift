@@ -16,17 +16,3 @@ struct ErrorMessageView: View {
             .padding(.horizontal)
     }
 }
-
-
-
-//struct ErrorMessageView: View {
-//    let message: String
-//
-//    var body: some View {
-//        Text(message)
-//            .foregroundColor(.red)
-//            .font(.footnote)
-//            .multilineTextAlignment(.center)
-//            .padding(.horizontal)
-//    }
-//}

@@ -20,6 +20,8 @@
 "detail.fat" = "脂質";
 "detail.carbs" = "炭水化物";
 "detail.protein" = "タンパク質";
+"product.unknown" = "不明";
+
 
 
 /// ===============================
@@ -27,6 +29,8 @@
 /// ===============================
 "scanner.title" = "スキャン";
 "scanner.instructions" = "バーコードを枠内に合わせてください";
+"scan.again" = "再スキャン";
+"scan.reset" = "リセット";
 
 
 /// ===============================
@@ -35,3 +39,5 @@
 "error.generic" = "エラーが発生しました。";
 "error.network" = "ネットワークエラーが発生しました。";
 "error.invalid" = "無効な入力です。";
+"error.notfound" = "商品が見つかりませんでした。";
+

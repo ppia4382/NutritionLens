@@ -9,52 +9,81 @@ import SwiftUI
 
 struct SearchView: View {
     @StateObject private var viewModel = SearchViewModel()
-    @State private var showingScanner = false
+    @State private var isScannerOpen = false
 
     var body: some View {
         NavigationView {
-            VStack(spacing: 20) {
-                searchInputSection
-                statusSection
-                resultSection
+            ScrollView {
+                VStack(spacing: 24) {
 
-                Spacer()
-            }
-            .padding()
-            .navigationTitle("search.title")
-            .sheet(isPresented: $showingScanner) {
-                ScannerView { scannedCode in
-                    viewModel.handleScannedCode(scannedCode)
-                    showingScanner = false
+                    // App name
+                    Text("NutritionLens")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+
+                    // Scan button (scanner appears only when tapped)
+                    Button {
+                        if isScannerOpen {
+                            isScannerOpen = false
+                        } else {
+                            viewModel.resetItem()
+                            isScannerOpen = true
+                        }
+                    } label: {
+                        HStack {
+                            Image(systemName: "barcode.viewfinder")
+                            Text("scanner.title")
+                        }
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .padding(.top, 20)
+
+                    // Scanner appears only when needed
+                    if isScannerOpen {
+                        ScannerView { scannedCode in
+                            isScannerOpen = false
+                            viewModel.handleScannedCode(scannedCode)
+                        }
+                        .frame(height: 260)
+                        .cornerRadius(12)
+                    }
+
+                    // Guide text
+                    Text("scanner.instructions")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+
+                    // 検索 label
+                    Text("search.title")
+                        .font(.headline)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+
+                    // TextField
+                    TextField("search.placeholder", text: $viewModel.query)
+                        .textFieldStyle(.roundedBorder)
+                        .submitLabel(.search)
+                        .onSubmit {
+                            Task { await viewModel.search() }
+                        }
+
+                    // 検索 button
+                    Button("search.button") {
+                        Task { await viewModel.search() }
+                    }
+                    .buttonStyle(.borderedProminent)
+
+                    // Status + result section
+                    statusSection
+
+                    Spacer()
                 }
+                .padding()
             }
+            .navigationBarHidden(true)
         }
     }
 
-    // MARK: - Sections
-
-    private var searchInputSection: some View {
-        HStack(spacing: 12) {
-            TextField("search.placeholder", text: $viewModel.query)
-                .textFieldStyle(.roundedBorder)
-                .submitLabel(.search)
-                .onSubmit {
-                    Task { await viewModel.search() }
-                }
-
-            Button("search.button") {
-                Task { await viewModel.search() }
-            }
-            .buttonStyle(.borderedProminent)
-
-            Button {
-                showingScanner = true
-            } label: {
-                Image(systemName: "barcode.viewfinder")
-            }
-            .buttonStyle(.borderedProminent)
-        }
-    }
+    // MARK: - Status Section
 
     private var statusSection: some View {
         VStack(spacing: 12) {
@@ -75,17 +104,27 @@ struct SearchView: View {
             if let error = viewModel.errorMessage {
                 ErrorMessageView(message: error)
             }
-        }
-        .frame(maxWidth: .infinity)
-    }
 
-    private var resultSection: some View {
-        Group {
             if let item = viewModel.item {
-                NavigationLink(destination: ProductDetailView(item: item)) { NutritionResultView(item: item)
-                        .contentShape(Rectangle())
+                NavigationLink(destination: ProductDetailView(item: item)) {
+                    NutritionResultView(item: item)
                 }
-                .buttonStyle(.plain) }
+                .buttonStyle(.plain)
+
+                // ⭐ Scan Again button
+                Button("scan.again") {
+                    viewModel.resetItem()
+                    isScannerOpen = true
+                }
+                .buttonStyle(.bordered)
+                
+                // ⭐ Reset Screen (close scanner + clear everything)
+                Button("scan.reset") {
+                    viewModel.resetItem()
+                    isScannerOpen = false
+                }
+                .buttonStyle(.bordered)
+            }
         }
     }
 }

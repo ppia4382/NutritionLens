@@ -6,90 +6,67 @@
 //
 
 import SwiftUI
-
-//struct ScannerView: View {
-//    let onScan: (String) -> Void
-//
-//    var body: some View {
-//        VStack {
-//            Text("scanner.instructions")
-//                .padding()
-//
-//            // Your scanner implementation here
-//        }
-//        .navigationTitle("scanner.title")
-//    }
-//}
-
-
 import AVFoundation
-import SwiftUI
 
-struct ScannerView: UIViewControllerRepresentable {
-    var onScan: (String) -> Void
+struct ScannerView: UIViewRepresentable {
+    let onCodeScanned: (String) -> Void
 
-    func makeUIViewController(context: Context) -> ScannerViewController {
-        let controller = ScannerViewController()
-        controller.onScan = onScan
-        return controller
+    func makeCoordinator() -> Coordinator {
+        Coordinator(onCodeScanned: onCodeScanned)
     }
 
-    func updateUIViewController(
-        _ uiViewController: ScannerViewController,
-        context: Context
-    ) {}
-}
-
-final class ScannerViewController: UIViewController,
-    AVCaptureMetadataOutputObjectsDelegate
-{
-    var onScan: ((String) -> Void)?
-
-    private let session = AVCaptureSession()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupCamera()
+    func makeUIView(context: Context) -> CameraPreview {
+        let view = CameraPreview()
+        context.coordinator.configureSession(for: view)
+        return view
     }
 
-    private func setupCamera() {
-        guard let device = AVCaptureDevice.default(for: .video),
-            let input = try? AVCaptureDeviceInput(device: device)
-        else {
-            return
+    func updateUIView(_ uiView: CameraPreview, context: Context) {
+        // Nothing to update dynamically for now
+    }
+
+    // MARK: - Coordinator
+
+    final class Coordinator: NSObject, AVCaptureMetadataOutputObjectsDelegate {
+        private let session = AVCaptureSession()
+        private let onCodeScanned: (String) -> Void
+        private var didSendResult = false
+
+        init(onCodeScanned: @escaping (String) -> Void) {
+            self.onCodeScanned = onCodeScanned
         }
 
-        session.addInput(input)
+        func configureSession(for preview: CameraPreview) {
+            preview.setup(with: session)
 
-        let output = AVCaptureMetadataOutput()
-        session.addOutput(output)
+            guard let device = AVCaptureDevice.default(for: .video),
+                  let input = try? AVCaptureDeviceInput(device: device),
+                  session.canAddInput(input) else {
+                return
+            }
 
-        output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-        output.metadataObjectTypes = [
-            .ean13, .ean8, .upce, .code128,
-        ]
+            session.addInput(input)
 
-        let preview = AVCaptureVideoPreviewLayer(session: session)
-        preview.videoGravity = .resizeAspectFill
-        preview.frame = view.layer.bounds
-        view.layer.addSublayer(preview)
+            let metadataOutput = AVCaptureMetadataOutput()
+            guard session.canAddOutput(metadataOutput) else { return }
+            session.addOutput(metadataOutput)
 
-        session.startRunning()
-    }
+            metadataOutput.setMetadataObjectsDelegate(self, queue: .main)
+            metadataOutput.metadataObjectTypes = [.ean8, .ean13, .upce, .code128]
 
-    func metadataOutput(
-        _ output: AVCaptureMetadataOutput,
-        didOutput metadataObjects: [AVMetadataObject],
-        from connection: AVCaptureConnection
-    ) {
-        guard
-            let object = metadataObjects.first
-                as? AVMetadataMachineReadableCodeObject,
-            let value = object.stringValue
-        else { return }
+            session.startRunning()
+        }
 
-        session.stopRunning()
-        onScan?(value)
-        dismiss(animated: true)
+        func metadataOutput(_ output: AVCaptureMetadataOutput,
+                            didOutput metadataObjects: [AVMetadataObject],
+                            from connection: AVCaptureConnection) {
+            guard !didSendResult,
+                  let metadataObject = metadataObjects.first as? AVMetadataMachineReadableCodeObject,
+                  let value = metadataObject.stringValue else { return }
+
+            didSendResult = true
+            session.stopRunning()
+            onCodeScanned(value)
+        }
     }
 }

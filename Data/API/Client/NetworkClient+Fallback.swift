@@ -12,11 +12,11 @@ extension NetworkClient {
         endpoint: Endpoint,
         domains: [NetworkConfig]
     ) async throws -> T {
-
+        
         for domain in domains {
             let client = NetworkClient(config: domain)
             print("DEBUG TRYING DOMAIN:", domain.baseURL)
-
+            
             do {
                 let result: T = try await client.request(endpoint)
                 return result
@@ -30,7 +30,6 @@ extension NetworkClient {
                 continue
             }
         }
-
         throw ProductError.notFound
     }
 }

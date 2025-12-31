@@ -19,12 +19,16 @@
 "detail.fat" = "Fat";
 "detail.carbs" = "Carbohydrates";
 "detail.protein" = "Protein";
+"product.unknown" = "Unknown";
+
 
 /// ===============================
 /// Scanner
 /// ===============================
 "scanner.title" = "Scan";
 "scanner.instructions" = "Align the barcode within the frame";
+"scan.again" = "Scan Again";
+
 
 /// ===============================
 /// Errors
@@ -32,3 +36,7 @@
 "error.generic" = "An error has occurred.";
 "error.network" = "A network error has occurred.";
 "error.invalid" = "Invalid input.";
+"error.notfound" = "Product not found.";
+
+
+

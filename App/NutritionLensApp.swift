@@ -11,7 +11,6 @@ import SwiftUI
 struct NutritionLensApp: App {
     var body: some Scene {
         WindowGroup {
-            //ContentView()
             SearchView()
         }
     }
