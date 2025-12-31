@@ -5,6 +5,23 @@
 //  Created by Patrician Andres on 2025/12/29.
 //
 
+import SwiftUI
+
+//struct ScannerView: View {
+//    let onScan: (String) -> Void
+//
+//    var body: some View {
+//        VStack {
+//            Text("scanner.instructions")
+//                .padding()
+//
+//            // Your scanner implementation here
+//        }
+//        .navigationTitle("scanner.title")
+//    }
+//}
+
+
 import AVFoundation
 import SwiftUI
 
