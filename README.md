@@ -96,6 +96,55 @@ Side‑by‑side comparison of English and Japanese UI, demonstrating full i18n 
 
 ---
 
+## Engineering Qualities: Testability, Scalability, Extensibility
+NutritionLens was designed with long‑term maintainability and engineering quality in mind. The architecture emphasizes clear separation of concerns, predictable data flow, and modular components that can evolve without breaking existing functionality.
+
+### **Testability**
+- ViewModels isolate business logic from UI, making them easy to unit test  
+- API access and mapping are separated into dedicated services  
+- Localized error handling allows deterministic test scenarios  
+- Pure Swift models (structs) simplify validation and decoding tests  
+
+### **Scalability**
+- MVVM structure supports adding new screens without impacting existing ones  
+- API layer is modular and can be expanded to support additional endpoints  
+- Localization system scales naturally to more languages  
+- Scanner flow is isolated, allowing future enhancements (e.g., multi‑scan mode)  
+
+### **Extensibility**
+- Clear folder structure (Models / ViewModels / Views / Services) supports future features  
+- Product model and nutriments model are designed to accept new fields  
+- Architecture allows adding features like Favorites, History, or Offline Mode  
+- UI components (e.g., scanner view) are reusable and replaceable  
+
+---
+
+## **Human Interface Guidelines (HIG) Compliance**
+
+NutritionLens follows Apple’s Human Interface Guidelines to ensure a familiar, intuitive, and consistent user experience across iOS devices.
+
+### **Key Areas of Compliance**
+- **Clarity:** Minimal UI, clear hierarchy, and focused content  
+- **Consistency:** Uses native SwiftUI components, system colors, and SF Symbols  
+- **Feedback:** Scanner provides immediate visual state changes  
+- **User Control:** Users can open/close the scanner and reset the flow at any time  
+- **Localization:** Full support for Base and Japanese, following Apple’s internationalization guidelines  
+
+## **How NutritionLens Follows Apple’s HIG**
+
+NutritionLens was intentionally designed to feel native to iOS. The app aligns with Apple’s Human Interface Guidelines in the following ways:
+
+- Uses standard navigation patterns (NavigationStack)  
+- Employs system fonts, spacing, and layout conventions  
+- Keeps the interface minimal and content‑focused  
+- Provides predictable flows (Scan → Result → Reset)  
+- Uses localized strings instead of hardcoded text  
+- Ensures UI components behave consistently with iOS expectations  
+
+This results in an app that feels familiar, intuitive, and aligned with Apple’s design philosophy.
+
+---
+
 ## License
 MIT License
 
@@ -197,6 +246,54 @@ NutritionLens/
 
 ### **ローカライズデモ**
 英語版と日本語版の UI を比較し、完全な i18n 対応をアピール。
+
+---
+
+## **設計品質：Testability / Scalability / Extensibility**
+
+NutritionLens は、長期的な保守性と品質を重視して設計されています。責務分離、予測可能なデータフロー、モジュール化された構造により、将来的な機能追加にも柔軟に対応できます。
+
+### **Testability（テスト容易性）**
+- ViewModel にロジックを集約し、UI から切り離すことで単体テストが容易  
+- API アクセスとデータ変換を専用サービスに分離  
+- ローカライズされたエラーにより、テストケースが明確  
+- 純粋な Swift モデル（struct）によりデコードや検証が簡単  
+
+### **Scalability（スケーラビリティ）**
+- MVVM により画面追加が既存機能に影響しない  
+- API レイヤーはエンドポイント追加に柔軟  
+- ローカライズは多言語対応に自然に拡張可能  
+- スキャナー機能は独立しており、将来的な強化が容易  
+
+### **Extensibility（拡張性）**
+- 明確なフォルダ構成により機能追加が容易  
+- Product / Nutriments モデルはフィールド追加に対応  
+- お気に入り機能や履歴機能などの追加が容易  
+- スキャナー UI は再利用可能で差し替えも簡単  
+
+---
+
+## **Human Interface Guidelines (HIG) 準拠**
+
+NutritionLens は、iOS アプリとして自然で直感的な操作性を提供するため、Apple の Human Interface Guidelines に沿って設計されています。
+
+### **準拠している主なポイント**
+- **明確性（Clarity）:** シンプルな UI と明確な情報階層  
+- **一貫性（Consistency）:** SwiftUI の標準コンポーネントやシステムカラーを使用  
+- **フィードバック（Feedback）:** スキャナー状態の即時反映  
+- **ユーザー操作性（User Control）:** スキャナーの開閉やリセットをユーザーが自由に操作可能  
+- **ローカライズ（Localization）:** Base + 日本語対応、Apple の国際化ガイドラインに準拠  
+
+## **NutritionLens が HIG に沿って設計されている理由**
+
+NutritionLens は、iOS ネイティブアプリとして自然に感じられるよう、Apple の HIG に基づいて設計されています。
+
+- NavigationStack による標準的なナビゲーション  
+- システムフォント・標準スペーシング・標準レイアウトの採用  
+- コンテンツを中心としたミニマルな UI  
+- 予測可能なユーザーフロー（スキャン → 結果 → リセット）  
+- ハードコードを避け、すべての文言をローカライズ  
+- iOS 標準の操作感に沿ったコンポーネント設計  
 
 ---
 
